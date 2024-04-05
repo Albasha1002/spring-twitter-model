@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>User List</title>
+</head>
+<body>
+    <h1>User List</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>UserId 1</th>
+                <th>UserId 2</th>
+                <th>Date & Time</th>
+                <!-- Add more columns as needed -->
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="user : ${usersDto}">
+                <td th:text="${user.follower.userId}"></td>
+                <td th:text="${user.following.userId}"></td>
+                <td th:text="${user.followDate}"></td>
+                <!-- Add more columns as needed -->
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

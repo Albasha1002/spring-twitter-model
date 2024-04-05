@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User List</title>
+    <style>
+        .user-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .user-item {
+            margin-bottom: 20px;
+        }
+
+        .user-details {
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-info p {
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .follow-btn,
+        .unfollow-btn {
+            background-color: #0077b5;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition-duration: 0.4s;
+        }
+
+        .follow-btn:hover,
+        .unfollow-btn:hover {
+            background-color: #0077b5;
+        }
+    </style>
+</head>
+<body>
+    <ul class="user-list">
+        <li th:each="user : ${users}" class="user-item">
+            <div class="user-details">
+                <div class="user-info">
+                    <p> <span th:text="${user.username}"></span></p>
+                    <!-- Display follow/unfollow button based on user's follow status -->
+                    <form th:action="@{/follow/{userId}(userId=${user.userId})}" method="post" th:if="${not user.isFollowed}" class="follow-form">
+                        <button type="submit" class="follow-btn">Follow</button>
+                    </form>
+                    <form th:action="@{/unfollow/{userId}(userId=${user.userId})}" method="post" th:if="${user.isFollowed}" class="unfollow-form">
+                        <button type="submit" class="unfollow-btn">Unfollow</button>
+                    </form>
+                </div>
+            </div>
+        </li>
+    </ul>
+</body>
+</html>

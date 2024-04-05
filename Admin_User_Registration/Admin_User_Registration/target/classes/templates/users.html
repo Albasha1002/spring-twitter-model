@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>User List to Follow</title>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Define your CSS styles here */
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        .follow-icon {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>List of Users to Follow</h1>
+    <ul>
+        <li th:each="user : ${users}">
+            <span th:text="${user.fullname}"></span>
+            <div th:if="${user.userId}" class="follow-icon">
+                <!-- If the user is already followed, show a filled follow icon -->
+                <i class="fas fa-user-plus"></i> <!-- Example: Font Awesome icon for follow -->
+                <!-- You can replace "fas fa-user-plus" with your preferred icon class -->
+            </div>
+            <div th:unless="${user.userId}" class="follow-icon">
+                <!-- If the user is not followed, show an outline follow icon -->
+                <i class="far fa-user-plus"></i> <!-- Example: Font Awesome icon for unfollow -->
+                <!-- You can replace "far fa-user-plus" with your preferred icon class -->
+            </div>
+        </li>
+    </ul>
+    <!-- Add your JavaScript code here if necessary -->
+</body>
+</html>

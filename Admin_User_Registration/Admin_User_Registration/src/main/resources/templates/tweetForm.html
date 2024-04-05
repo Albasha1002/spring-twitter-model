@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Tweet</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+        .tweet-form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            margin: 0 auto;
+        }
+        .tweet-form h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        .tweet-form textarea {
+            width: 90%;
+            height: 100px;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: vertical;
+        }
+        .tweet-form button {
+            background-color: #0077b5;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .tweet-form button:hover {
+            background-color: #0077b5;
+        }
+    </style>
+</head>
+<body>
+    <div class="tweet-form">
+        <h2>Post a Tweet</h2>
+        <form th:action="@{/post-tweet}" method="post" th:object="${tweetForm}">
+            <input type="hidden" th:field="*{tweetId}" />
+            <input type="hidden" th:field="*{email}" />
+            <textarea th:field="*{tweetText}" placeholder="What's on your mind?"></textarea>
+            <button type="submit">Tweet</button>
+        </form>
+    </div>
+</body>
+</html>
